@@ -1,22 +1,33 @@
-﻿void ArrayOfStrings()
+﻿string [] EnterArray(int size)
 {
-    string [] stringArray = new string [] {"hello", "22", "world", ":-)"};//массив из строк
-    Console.Write("The initial array of strings: ");
-    ShowArray(stringArray);//вывод исходного массива
-    
-    int size = ArrayLength(stringArray);//вводим переменную, которая будет равна длине второго массива, находим ее с помощью метода
+    Console.Write("Enter strings: ");
+    string [] stringArray = new string [size];
+    for (int i = 0; i < stringArray.Length; i++)
+        {
+            stringArray [i] = Convert.ToString(Console.ReadLine());
+        }
+    return stringArray;
+}
+
+void ArrayOfStrings(string [] array)
+{
+/*  string [] stringArray = new string [] {"hello", "22", "world", ":-)"};//массив из строк
+    Console.Write("The initial array of strings: ");                                          //вариант, когда массив задан исходно
+    ShowArray(stringArray);//вывод исходного массива 
+*/    
+    int size = ArrayLength(array);//вводим переменную, которая будет равна длине второго массива, находим ее с помощью метода
     
     if (size > 0)//проверка, будет ли во втором массиве содержаться хотя бы один элемент
     {
         string [] shortStringArray = new string [size];//создаем второй массив, который будет состоять из коротких элементов,
         int ind = 0;                                   //и переменную, которая будет работать как счетчик индексов в нем
 
-        for (int i = 0; i < stringArray.Length; i++)//цикл по перезаписи элементов длиной <4
+        for (int i = 0; i < array.Length; i++)//цикл по перезаписи элементов длиной <4
             {
-                string str = stringArray [i];//каждый элемент первого массива переводим в строку
+                string str = array [i];//каждый элемент первого массива переводим в строку
                 if (str.Length < 4)          //и проверяем количество символов в нем
                 {
-                    shortStringArray[ind] = stringArray [i];//если элемент меньше 4 символов длиной, записываем его во второй массив
+                    shortStringArray[ind] = array [i];//если элемент меньше 4 символов длиной, записываем его во второй массив
                     ind++;
                 }
             }
@@ -48,4 +59,12 @@ int ArrayLength(string [] array)//метод по нахождению длин�
     return count;
 }
 
-ArrayOfStrings();
+Console.Write("Enter number of strings in your array: ");
+int sizeOfArray = Convert.ToInt32(Console.ReadLine());
+
+string [] firstStringArray = EnterArray(sizeOfArray);
+Console.Write("The initial array of strings: ");
+ShowArray(firstStringArray);
+
+ArrayOfStrings(firstStringArray);
+
